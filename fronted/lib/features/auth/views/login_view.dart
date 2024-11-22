@@ -1,4 +1,3 @@
-// # Vista de inicio de sesión
 import 'package:flutter/material.dart';
 import '../../../shared/widgets/custom_text_field.dart';
 import '../../../shared/widgets/custom_button.dart';
@@ -15,6 +14,12 @@ class LoginView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
+            // Imagen en la parte superior
+            Image.asset(
+              'assets/logo.png',
+              height: 100, 
+            ),
+            const SizedBox(height: 16),
             const Text(
               '¡Bienvenido/a!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -35,7 +40,7 @@ class LoginView extends StatelessWidget {
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
               },
-              child: const Text('Regístrate'),
+              child: const Text('¿Si no tienes cuenta? Regístrate'),
             ),
           ],
         ),
