@@ -1,0 +1,1 @@
+// # Vista para tomar/subir foto de aves

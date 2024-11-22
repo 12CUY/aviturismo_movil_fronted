@@ -1,0 +1,1 @@
+// # Vista principal (pantalla de inicio)
