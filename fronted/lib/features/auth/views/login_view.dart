@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../shared/widgets/custom_text_field.dart';
 import '../../../shared/widgets/custom_button.dart';
+import '../../../app/routes/app_routes.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class LoginView extends StatelessWidget {
             // Imagen en la parte superior
             Image.asset(
               'assets/logo.png',
-              height: 100, 
+              height: 100,
             ),
             const SizedBox(height: 16),
             const Text(
@@ -32,7 +33,15 @@ class LoginView extends StatelessWidget {
             CustomButton(
               text: 'Continuar',
               onPressed: () {
-                Navigator.pushNamed(context, '/dashboard');
+                // Aquí puedes validar el correo antes de continuar, si es necesario.
+                final email =
+                    'usuario@ejemplo.com'; // Este debería obtenerse del campo de texto.
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.verification,
+                  arguments:
+                      email, // Pasamos el correo electrónico como argumento.
+                );
               },
             ),
             const Spacer(),
