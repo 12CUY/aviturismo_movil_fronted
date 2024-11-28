@@ -1,7 +1,8 @@
-// # Vista principal (pantalla de inicio)
 import 'package:flutter/material.dart';
 import 'package:fronted/app/routes/app_routes.dart';
-import '../../bird/widgets/bird_card.dart'; // Tarjetas de aves
+import 'package:fronted/shared/widgets/menu_view.dart';
+
+
 
 class DashboardView extends StatelessWidget {
   const DashboardView({Key? key}) : super(key: key);
@@ -10,96 +11,201 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Image.asset(
-            'assets/logo.png', // Ruta de la imagen
-            width: 24,                      // Ajusta el tamaño de la imagen
-            height: 24,
-          ),
-          onPressed: () {
-          Navigator.pushNamed(context, '/dashboard');
-          },
-        ),
+        title: Text('AviTourism'),
+        centerTitle: true,
       ),
+      drawer: MenuView(), // Menú lateral
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Bienvenida ',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Emilia hxg',
-                  style: TextStyle(fontSize: 18, color: Colors.purple),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              '¿Qué te gustaría aprender?',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                BirdCard(
-                  imagePath: 'assets/logo.png',
-                  birdName: 'Loro rojo',
-                ),
-                BirdCard(
-                  imagePath: 'assets/logo.png',
-                  birdName: 'Loro rosa',
-                ),
-                BirdCard(
-                  imagePath: 'assets/logo.png',
-                  birdName: 'Loro verde',
-                ),
-              ],
-            ),
-            const SizedBox(height: 32),
-            const Text(
-              'Toma o sube una foto',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            Center(
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.birdCapture); // Navega a la vista de captura
-                },
-                icon: const Icon(Icons.camera_alt),
-                label: const Text('foto'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  minimumSize: const Size(150, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _buildWelcomeCard(), // Tarjeta de bienvenida
+              SizedBox(height: 20),
+              Center(
+                child: Text(
+                  '¿Qué te gustaría aprender?',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.center,
                 ),
               ),
+              SizedBox(height: 20),
+              Wrap(
+                spacing: 16,
+                runSpacing: 16,
+                alignment: WrapAlignment.center,
+                children: [
+                  _buildBirdCard('Loro rojo', 'assets/logo.png'),
+                  _buildBirdCard('Loro rosa', 'assets/logo.png'),
+                  _buildBirdCard('Loro rosa', 'assets/logo.png'),
+                ],
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: Column(
+                  children: [
+                    Text('Toma o sube una foto'),
+                    SizedBox(height: 10),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        // Lógica para tomar o subir una foto
+                      },
+                      icon: Icon(Icons.camera_alt),
+                      label: Text('Foto'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWelcomeCard() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.pink[50], // Fondo rosado suave
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            blurRadius: 6,
+            offset: Offset(0, 4), // Sombra ligera
+          ),
+        ],
+      ),
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              'Bienvenid@',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey[200], // Fondo gris claro
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: Offset(2, 2), // Sombra alrededor del texto
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBirdCard(String title, String imageAsset) {
+    return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: Colors.blueAccent, width: 2),
+      ),
+      child: Container(
+        width: 140,
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                imageAsset,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            TextButton(
+              onPressed: () {
+                // Lógica para mostrar más información sobre el ave
+              },
+              child: Text('Saber más'),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Inicio',
+    );
+  }
+}
+
+class MenuView extends StatelessWidget {
+  const MenuView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.person, size: 30, color: Colors.blue),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Emilia hxg',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                Text(
+                  'emilia@example.com',
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+              ],
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Listado de aves',
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Inicio'),
+            onTap: () {
+              // Lógica para navegar al inicio
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.list),
+            title: Text('Listado de aves'),
+            onTap: () {
+              // Lógica para ir al listado de aves
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Configuración'),
+            onTap: () {
+              // Lógica para configuración
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Cerrar sesión'),
+            onTap: () {
+              // Lógica para cerrar sesión
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
