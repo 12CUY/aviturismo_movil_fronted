@@ -6,7 +6,7 @@ import '../../features/auth/views/register_view.dart';
 import '../../features/auth/views/verification_view.dart';
 import '../../features/dashboard/views/dashboard_view.dart' as dashboard;
 import '../../shared/widgets/menu_view.dart' as shared;
-//import '../../features/bird/views/bird_list_view.dart';
+import '../../features/bird/views/bird_list_view.dart';
 // import '../../features/bird/views/bird_capture_view.dart';
 
 // rutas
@@ -28,7 +28,7 @@ class AppRoutes {
       verification: (_) => const VerificationView(),
       dashboard: (_) => const DashboardView(),
       menu: (_) => const shared.MenuView(),
-      //birdList: (_) => const BirdListView(),
+      birdList: (_) => const BirdListView(),
       // birdCapture: (_) => const BirdCaptureView(),
     };
   }

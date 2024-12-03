@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fronted/app/routes/app_routes.dart';
 import 'package:fronted/shared/widgets/menu_view.dart';
 
-
-
 class DashboardView extends StatelessWidget {
   const DashboardView({Key? key}) : super(key: key);
 
@@ -185,18 +183,17 @@ class MenuView extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.list),
-            title: Text('Listado de aves'),
+            title: Text('Listado de Aves'),
             onTap: () {
-              // Lógica para ir al listado de aves
-              Navigator.pop(context);
+              Navigator.pushNamed(context, AppRoutes.birdList);
             },
           ),
           ListTile(
             leading: Icon(Icons.logout),
             title: Text('Cerrar sesión'),
             onTap: () {
-              // Lógica para cerrar sesión
-              Navigator.pop(context);
+              Navigator.pushNamedAndRemoveUntil(
+                  context, AppRoutes.login, (route) => false);
             },
           ),
         ],

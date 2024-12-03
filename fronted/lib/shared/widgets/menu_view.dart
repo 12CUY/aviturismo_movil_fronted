@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../app/routes/app_routes.dart';
 
 class MenuView extends StatelessWidget {
   const MenuView({Key? key}) : super(key: key);
@@ -43,10 +44,9 @@ class MenuView extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.list),
-            title: Text('Listado de aves'),
+            title: Text('Listado de Aves'),
             onTap: () {
-              // Lógica para ir al listado de aves
-              Navigator.pop(context);
+              Navigator.pushNamed(context, AppRoutes.birdList);
             },
           ),
           ListTile(
