@@ -50,14 +50,6 @@ class MenuView extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Configuración'),
-            onTap: () {
-              // Lógica para configuración
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.logout),
             title: Text('Cerrar sesión'),
             onTap: () {
