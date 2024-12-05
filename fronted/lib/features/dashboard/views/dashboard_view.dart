@@ -189,6 +189,13 @@ class MenuView extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Perfil'), 
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.perfil);
+            },
+          ),
+          ListTile(
             leading: Icon(Icons.logout),
             title: Text('Cerrar sesión'),
             onTap: () {
