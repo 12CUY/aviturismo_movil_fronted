@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class FormularioView3 extends StatelessWidget {
-  const FormularioView3({Key? key}) : super(key: key);
+class Formulario3View extends StatelessWidget {
+  const Formulario3View({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

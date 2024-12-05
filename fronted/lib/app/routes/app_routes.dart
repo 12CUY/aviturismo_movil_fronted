@@ -22,6 +22,7 @@ class AppRoutes {
   static const String birdCapture = '/bird-capture';
   static const String perfil = '/perfil';
   static const String formulario1 = '/formulario1';
+  
   static const String formulario2 = '/formulario2';
   static const String formulario3 = '/formulario3';
 
@@ -35,9 +36,9 @@ class AppRoutes {
       menu: (_) => const shared.MenuView(),
       birdList: (_) => const BirdListView(),
       perfil: (_) => const shared.PerfilView(),
-      formulario1: (_) => const FormularioView1(),
-      formulario2: (_) => const FormularioView2(),
-      formulario3: (_) => const FormularioView3(),
+      formulario1: (_) => const Formulario1View(),
+      formulario2: (_) => const Formulario2View(),
+      formulario3: (_) => const Formulario3View(),
     };
   }
 }

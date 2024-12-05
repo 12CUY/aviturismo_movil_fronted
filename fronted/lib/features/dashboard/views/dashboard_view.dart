@@ -1,9 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:fronted/app/routes/app_routes.dart';
 import 'package:fronted/shared/widgets/menu_view.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({Key? key}) : super(key: key);
+
+  // Método para elegir una imagen desde la galería o cámara
+  Future<void> _elegirImagen(BuildContext context) async {
+    final ImagePicker _picker = ImagePicker();
+
+    // Mostrar un diálogo o menú para elegir la fuente de la imagen
+    final XFile? imagenSeleccionada = await _picker.pickImage(
+      source: ImageSource.gallery, // O ImageSource.camera para tomar una foto
+    );
+
+    if (imagenSeleccionada != null) {
+      // Navegar a Formulario1View y pasar la ruta de la imagen seleccionada
+      Navigator.pushNamed(
+        context,
+        AppRoutes.formulario1,
+        arguments: imagenSeleccionada.path, // Pasa la ruta de la imagen como argumento
+      );
+    } else {
+      print('No se seleccionó ninguna imagen.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,18 +65,19 @@ class DashboardView extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    Text('Toma o sube una foto'),
-                    SizedBox(height: 10),
+                    const Text('Toma o sube una foto'),
+                    const SizedBox(height: 10),
+                    // Botón para tomar o subir una foto
                     ElevatedButton.icon(
                       onPressed: () {
-                        // Lógica para tomar o subir una foto
+                        _elegirImagen(context); // Pasa el contexto al método para la navegación
                       },
-                      icon: Icon(Icons.camera_alt),
-                      label: Text('Foto'),
+                      icon: const Icon(Icons.cloud_upload),
+                      label: const Text('Subir Foto'),
                     ),
                   ],
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -135,75 +158,6 @@ class DashboardView extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class MenuView extends StatelessWidget {
-  const MenuView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: Colors.white,
-                  child: Icon(Icons.person, size: 30, color: Colors.blue),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Emilia hxg',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-                Text(
-                  'emilia@example.com',
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                ),
-              ],
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Inicio'),
-            onTap: () {
-              // Lógica para navegar al inicio
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.list),
-            title: Text('Listado de Aves'),
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.birdList);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Perfil'), 
-            onTap: () {
-              Navigator.pushNamed(context, AppRoutes.perfil);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Cerrar sesión'),
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, AppRoutes.login, (route) => false);
-            },
-          ),
-        ],
       ),
     );
   }
