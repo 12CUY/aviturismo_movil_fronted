@@ -8,9 +8,9 @@ import '../../features/dashboard/views/dashboard_view.dart' as dashboard;
 import '../../shared/widgets/menu_view.dart' as shared;
 import '../../features/bird/views/bird_list_view.dart';
 import 'package:fronted/features/bird/views/perfil.dart' as shared;
-// import '../../features/bird/views/bird_capture_view.dart';
-
-// rutas
+import 'package:fronted/features/formulario/views/formulario1.dart';
+import 'package:fronted/features/formulario/views/formulario2.dart';
+import 'package:fronted/features/formulario/views/formulario3.dart';
 
 class AppRoutes {
   static const String login = '/login';
@@ -21,6 +21,9 @@ class AppRoutes {
   static const String birdList = '/bird-list';
   static const String birdCapture = '/bird-capture';
   static const String perfil = '/perfil';
+  static const String formulario1 = '/formulario1';
+  static const String formulario2 = '/formulario2';
+  static const String formulario3 = '/formulario3';
 
 // c
   static Map<String, WidgetBuilder> getRoutes() {
@@ -31,7 +34,10 @@ class AppRoutes {
       dashboard: (_) => const DashboardView(),
       menu: (_) => const shared.MenuView(),
       birdList: (_) => const BirdListView(),
-      perfil: (_) => const  shared.PerfilView(), // birdCapture: (_) => const BirdCaptureView(),
+      perfil: (_) => const shared.PerfilView(),
+      formulario1: (_) => const FormularioView1(),
+      formulario2: (_) => const FormularioView2(),
+      formulario3: (_) => const FormularioView3(),
     };
   }
 }
