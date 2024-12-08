@@ -13,16 +13,19 @@ import 'package:fronted/features/formulario/views/formulario2.dart';
 import 'package:fronted/features/formulario/views/formulario3.dart';
 
 class AppRoutes {
+    // Rutas de autenticación
   static const String login = '/login';
   static const String register = '/register';
   static const String verification = '/verification';
+    // Rutas del dashboard
   static const String dashboard = '/dashboard';
   static const String menu = '/menu';
+    // Rutas de aves
   static const String birdList = '/bird-list';
   static const String birdCapture = '/bird-capture';
   static const String perfil = '/perfil';
+    // Rutas de formularios
   static const String formulario1 = '/formulario1';
-  
   static const String formulario2 = '/formulario2';
   static const String formulario3 = '/formulario3';
 
@@ -36,7 +39,7 @@ class AppRoutes {
       menu: (_) => const shared.MenuView(),
       birdList: (_) => const BirdListView(),
       perfil: (_) => const shared.PerfilView(),
-      formulario1: (_) => const Formulario1View(),
+      formulario1: (context) => const Formulario1View(),
       formulario2: (_) => const Formulario2View(),
       formulario3: (_) => const Formulario3View(),
     };
