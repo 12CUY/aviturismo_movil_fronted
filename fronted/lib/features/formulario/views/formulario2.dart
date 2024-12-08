@@ -9,8 +9,8 @@ class Formulario2View extends StatelessWidget {
       appBar: AppBar(
         title: const Text('formulario2'),
       ),
-      body: Center(
-        child: const Text('Vista formulario2'),
+      body: const Center(
+        child: Text('Vista formulario2'),
       ),
     );
   }

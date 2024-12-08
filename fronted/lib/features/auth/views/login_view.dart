@@ -26,15 +26,15 @@ class LoginView extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            CustomTextField(label: 'Dirección electrónica'),
+            const CustomTextField(label: 'Dirección electrónica'),
             const SizedBox(height: 16),
-            CustomTextField(label: 'Contraseña', obscureText: true),
+            const CustomTextField(label: 'Contraseña', obscureText: true),
             const SizedBox(height: 16),
             CustomButton(
               text: 'Continuar',
               onPressed: () {
                 // Aquí puedes validar el correo antes de continuar, si es necesario.
-                final email =
+                const email =
                     'usuario@ejemplo.com'; // Este debería obtenerse del campo de texto.
                 Navigator.pushNamed(
                   context,

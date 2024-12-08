@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
+import 'dart:io'; // Importar File para plataformas móviles
+import 'package:flutter/foundation.dart' show kIsWeb; // Importar kIsWeb
 
 class Formulario1View extends StatelessWidget {
   const Formulario1View({Key? key}) : super(key: key);
@@ -11,25 +12,32 @@ class Formulario1View extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Formulario 1'),
+        title: const Text('Formulario 1'),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(
+            const Text(
               'Imagen seleccionada:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Mostrar la imagen seleccionada
             imagePath.isNotEmpty
-                ? Image.file(
-                    File(imagePath), // Mostrar la imagen usando File
-                    height: 200,
-                    fit: BoxFit.cover,
-                  )
+                ? kIsWeb
+                    // Si es en la web, usa Image.network para cargar la imagen
+                    ? Image.network(
+                        imagePath, // URL local del archivo en la web
+                        height: 200,
+                        fit: BoxFit.cover,
+                      )
+                    : Image.file(
+                        File(imagePath), // Para móvil usa Image.file
+                        height: 200,
+                        fit: BoxFit.cover,
+                      )
                 : Container(),
           ],
         ),

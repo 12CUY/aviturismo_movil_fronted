@@ -10,7 +10,7 @@ class MenuView extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          const DrawerHeader(
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
@@ -35,30 +35,30 @@ class MenuView extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Inicio'),
+            leading: const Icon(Icons.home),
+            title: const Text('Inicio'),
             onTap: () {
               // Lógica para navegar al inicio
               Navigator.pop(context);
             },
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Perfil'), 
+            leading: const Icon(Icons.person),
+            title: const Text('Perfil'), 
             onTap: () {
               Navigator.pushNamed(context, AppRoutes.perfil);
             },
           ),
           ListTile(
-            leading: Icon(Icons.list),
-            title: Text('Listado de Aves'),
+            leading: const Icon(Icons.list),
+            title: const Text('Listado de Aves'),
             onTap: () {
               Navigator.pushNamed(context, AppRoutes.birdList);
             },
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Cerrar sesión'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Cerrar sesión'),
             onTap: () {
               // Lógica para cerrar sesión
               Navigator.pop(context);

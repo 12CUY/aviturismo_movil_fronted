@@ -33,8 +33,8 @@ class PerfilView extends StatelessWidget {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Text(
                     'Usuario:',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -52,8 +52,8 @@ class PerfilView extends StatelessWidget {
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Text(
                     'Email:',
                     style: TextStyle(fontWeight: FontWeight.bold),
