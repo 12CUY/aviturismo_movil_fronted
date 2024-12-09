@@ -44,7 +44,7 @@ class MenuView extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.person),
-            title: const Text('Perfil'), 
+            title: const Text('Perfil'),
             onTap: () {
               Navigator.pushNamed(context, AppRoutes.perfil);
             },
@@ -60,8 +60,11 @@ class MenuView extends StatelessWidget {
             leading: const Icon(Icons.logout),
             title: const Text('Cerrar sesión'),
             onTap: () {
-              // Lógica para cerrar sesión
-              Navigator.pop(context);
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoutes.login, // Ruta a la pantalla de login
+                (route) => false, // Elimina todas las rutas previas
+              );
             },
           ),
         ],
