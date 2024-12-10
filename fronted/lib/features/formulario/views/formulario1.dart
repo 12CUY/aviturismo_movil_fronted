@@ -2,17 +2,22 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-class Formulario1View extends StatefulWidget {
-  const Formulario1View({Key? key}) : super(key: key);
+class FormularioCombinadoView extends StatefulWidget {
+  const FormularioCombinadoView({Key? key}) : super(key: key);
 
   @override
-  _Formulario1ViewState createState() => _Formulario1ViewState();
+  _FormularioCombinadoViewState createState() =>
+      _FormularioCombinadoViewState();
 }
 
-class _Formulario1ViewState extends State<Formulario1View> {
-  // Variables para manejar la selección de los menús desplegables
+class _FormularioCombinadoViewState extends State<FormularioCombinadoView> {
+  // Variables de los menús desplegables
   String? selectedSize;
   String? selectedWingPattern;
+  String? selectedWeather;
+  String? selectedHabitat;
+  String? selectedTailShape;
+  String? selectedBeakType;
 
   @override
   Widget build(BuildContext context) {
@@ -22,25 +27,24 @@ class _Formulario1ViewState extends State<Formulario1View> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Formulario 1'),
+        title: const Text('Formulario Unificado'),
         centerTitle: true,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center, // Centramos la columna
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
-              'Características del ave observada formulario #1',
+              'Características del ave observada',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            // Mostrar la imagen seleccionada
+            // Mostrar imagen
             Center(
               child: imagePath.isNotEmpty
                   ? kIsWeb
-                      // Si es en la web, usa Image.network para cargar la imagen
                       ? Image.network(
                           imagePath,
                           height: 150,
@@ -48,7 +52,7 @@ class _Formulario1ViewState extends State<Formulario1View> {
                           fit: BoxFit.cover,
                         )
                       : Image.file(
-                          File(imagePath), // Para móvil usa Image.file
+                          File(imagePath),
                           height: 150,
                           width: 150,
                           fit: BoxFit.cover,
@@ -62,7 +66,7 @@ class _Formulario1ViewState extends State<Formulario1View> {
                     ),
             ),
             const SizedBox(height: 16),
-            // Campos del formulario
+            // Campos del formulario 1
             const TextField(
               decoration: InputDecoration(
                 labelText: 'Nombre completo del observador',
@@ -85,7 +89,6 @@ class _Formulario1ViewState extends State<Formulario1View> {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 16),
-            // Dropdown para el tamaño del ave
             _buildDropdown(
               label: 'Tamaño del ave',
               value: selectedSize,
@@ -97,7 +100,6 @@ class _Formulario1ViewState extends State<Formulario1View> {
               },
             ),
             const SizedBox(height: 16),
-            // Dropdown para el patrón de alas
             _buildDropdown(
               label: 'Patrón de alas del ave',
               value: selectedWingPattern,
@@ -108,27 +110,78 @@ class _Formulario1ViewState extends State<Formulario1View> {
                 });
               },
             ),
-            const Spacer(),
-            // Botón Siguiente centrado
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/formulario2');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min, // Centra los elementos dentro del botón
-                  children: const [
-                    Text('Siguiente', style: TextStyle(fontSize: 16)),
-                    SizedBox(width: 8),
-                    Icon(Icons.arrow_forward),
-                  ],
-                ),
+            const SizedBox(height: 16),
+            // Campos del formulario 2
+            _buildDropdown(
+              label: 'Condiciones climáticas',
+              value: selectedWeather,
+              items: ['Soleado', 'Nublado', 'Lluvioso', 'Ventoso'],
+              onChanged: (value) {
+                setState(() {
+                  selectedWeather = value;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDropdown(
+              label: 'Tipo de hábitat',
+              value: selectedHabitat,
+              items: ['Bosque', 'Pradera', 'Montaña', 'Humedales'],
+              onChanged: (value) {
+                setState(() {
+                  selectedHabitat = value;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDropdown(
+              label: 'Forma de la cola',
+              value: selectedTailShape,
+              items: ['Recta', 'Ahusada', 'Horquillada', 'Circular'],
+              onChanged: (value) {
+                setState(() {
+                  selectedTailShape = value;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+            _buildDropdown(
+              label: 'Tipo de pico',
+              value: selectedBeakType,
+              items: ['Corto', 'Largo', 'Curvado', 'Ancho'],
+              onChanged: (value) {
+                setState(() {
+                  selectedBeakType = value;
+                });
+              },
+            ),
+            const SizedBox(height: 16),
+            const TextField(
+              decoration: InputDecoration(
+                labelText: 'Color del ave (principal)',
+                filled: true,
+              ),
+            ),
+            const SizedBox(height: 24),
+            // Botón Siguiente
+            ElevatedButton(
+              onPressed: () {
+                // Acción al presionar el botón
+                // Aquí podrías manejar el envío de datos
+                Navigator.pushNamed(context, '/resultado'); // Ruta de resultado
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('Guardar', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 8)
+                ],
               ),
             ),
           ],
@@ -146,7 +199,7 @@ class _Formulario1ViewState extends State<Formulario1View> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center, // Centra el Dropdown
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,

@@ -9,8 +9,6 @@ import '../../shared/widgets/menu_view.dart' as shared;
 import '../../features/bird/views/bird_list_view.dart';
 import 'package:fronted/features/bird/views/perfil.dart' as shared;
 import 'package:fronted/features/formulario/views/formulario1.dart';
-import 'package:fronted/features/formulario/views/formulario2.dart';
-import 'package:fronted/features/formulario/views/formulario3.dart';
 
 class AppRoutes {
     // Rutas de autenticación
@@ -27,7 +25,6 @@ class AppRoutes {
     // Rutas de formularios
   static const String formulario1 = '/formulario1';
   static const String formulario2 = '/formulario2';
-  static const String formulario3 = '/formulario3';
 
 // c
   static Map<String, WidgetBuilder> getRoutes() {
@@ -39,9 +36,7 @@ class AppRoutes {
       menu: (_) => const shared.MenuView(),
       birdList: (_) => const BirdListView(),
       perfil: (_) => const shared.PerfilView(),
-      formulario1: (context) => const Formulario1View(),
-      formulario2: (_) => const Formulario2View(),
-      formulario3: (_) => const Formulario3View(),
+      formulario1: (context) => const FormularioCombinadoView(),
     };
   }
 }

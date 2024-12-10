@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => const DashboardView(),
         '/bird-list': (context) => const BirdListView(),
         '/perfil': (context) => const PerfilView(),
-        '/formulario1': (context) => const Formulario1View(),
+        '/formulario1': (context) => const FormularioCombinadoView(),
         '/menu': (context) => const MenuView(),
 
         // Otras rutas
