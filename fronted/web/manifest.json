@@ -1,6 +1,6 @@
 {
-    "name": "fronted",
-    "short_name": "fronted",
+    "name": "app_zoologico",
+    "short_name": "app_zoologico",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
